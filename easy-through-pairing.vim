@@ -54,41 +54,32 @@ fun! EasyThrough()
     endif
     if &ft == 'c' || &ft == 'javascript'
 		if getline('.')[col('.')-1] == ')'
-					\&& getline('.')[col('.')+1] == '{'
-			echo "1"
-			return "\<esc>^i\<Down>\<Right>\<Right>\<Right>\<Right>\<esc>"
-		elseif getline('.')[col('.')-1] == ')' 
-			echo "2"
-						\&& CheckBelow()
-			return "\<esc>^i\<Down>\<Down>\<Right>\<Right>\<Right>\<Right>\<esc>"
-		elseif getline('.')[col('.')-1] == ')' && col('.') == col('$') -1
-			echo "1"
-			return "\<Right>\<Right>\{\<Enter>\}\<C-[>O"
-			" else
-			" return "\<Esc>^ji"
+			return "\<Right>;\<ENTER>"
+		else
+			return "{\<ENTER>\<ENTER>}\<Up>\<TAB>"
 		endif
 	endif
-	if pumvisible()
-        if getline('.')[col('.')-1] == ')' 
-            return "\<Insert>\<Insert>\<Right>"
-        else
-            return "\<Insert>\<Insert>"
-        endif
-	endif
-	for avoid in g:closingListMore
-		if closing == avoid
-			return "\<Right>"
-		endif
-	endfor   
-	if col('.') == col('$')
-		" return a:char.a:char."\<Esc>i"
-		" return a:char.a:char."\<Esc>i"
-		return "\<Esc>^ji"
-		" return "\<enter>"
-	else
-		return "\<ESC>ea"
-		" return "\<Insert>\<Insert>"
-	endif
+" 	if pumvisible()
+        " if getline('.')[col('.')-1] == ')' 
+            " return "\<Insert>\<Insert>\<Right>"
+        " else
+            " return "\<Insert>\<Insert>"
+        " endif
+" 	endif
+" 	for avoid in g:closingListMore
+" 		if closing == avoid
+" 			return "\<Right>"
+" 		endif
+" 	endfor   
+" 	if col('.') == col('$')
+" 		" return a:char.a:char."\<Esc>i"
+" 		" return a:char.a:char."\<Esc>i"
+" 		return "\<Esc>^ji"
+" 		" return "\<enter>"
+" 	else
+" 		return "\<ESC>ea"
+" 		" return "\<Insert>\<Insert>"
+" 	endif
 endfun
 fun! CheckBelow()
 	normal ^j
