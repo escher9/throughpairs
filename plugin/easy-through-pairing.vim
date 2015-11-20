@@ -52,7 +52,7 @@ fun! EasyThrough()
 			return ":\<Enter>"
 		endif
     endif
-    if &ft == 'c' || &ft == 'javascript'
+    if &ft == 'c' || &ft == 'cpp'
 		if getline('.')[col('.')-1] == ')'
 			return "\<Right>"
 		elseif getline('.')[col('.')-2] == ')'
