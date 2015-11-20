@@ -54,7 +54,11 @@ fun! EasyThrough()
     endif
     if &ft == 'c' || &ft == 'javascript'
 		if getline('.')[col('.')-1] == ')'
-			return "\<Right>;\<ENTER>"
+			return "\<Right>"
+		elseif getline('.')[col('.')-2] == ')'
+			return ";\<ENTER>"
+" 		elseif getline('.')[col('.')-3] == ')'
+" 			return "{\<ENTER>\<ENTER>}\<Up>\<TAB>"
 		else
 			return "{\<ENTER>\<ENTER>}\<Up>\<TAB>"
 		endif
